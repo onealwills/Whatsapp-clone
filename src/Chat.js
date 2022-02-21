@@ -8,7 +8,7 @@ import MicIcon from "@material-ui/icons/Mic";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 // import axios from "./axios.js";
 
-function Chat() {
+function Chat({ messages }) {
   return (
     <div className="chat">
       <div className="chat__header">
@@ -35,11 +35,15 @@ function Chat() {
       </div>
 
       <div className="chat__body">
-        <p className="chat__message">
-          <span className="chat__name">Sunny</span>
-          This a message
-          <span className="chat__timestamp">{new Date().toUTCString()}</span>
-        </p>
+        {messages.map((message) => (
+          <p
+            className={`chat__message ${message.received && "chat__reciever"}`}
+          >
+            <span className="chat__name">{message.name}</span>
+            {message.message}
+            <span className="chat__timestamp">{message.timestamp}</span>
+          </p>
+        ))}
 
         <p className="chat__message chat__reciever">
           <span className="chat__name">Sunny</span>
